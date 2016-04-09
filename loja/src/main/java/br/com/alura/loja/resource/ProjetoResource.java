@@ -3,6 +3,7 @@ package br.com.alura.loja.resource;
 import java.net.URI;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -39,5 +40,14 @@ public class ProjetoResource {
 		return Response.created(uri).build();
 
 	}
+	
+	@Path("{id}")
+    @DELETE
+    public Response removeProjeto(@PathParam("id") long id) {
+        new ProjetoDAO().remove(id);
+        return Response.ok().build();
+    }
+
+	// curl -v -X DELETE http://localhost:8080/projetos/1
 
 }
